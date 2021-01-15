@@ -11,6 +11,8 @@ class HomeState extends ChangeNotifier {
   BuildContext context;
   List<Products> products = List<Products>();
   bool loaded = false;
+  List<TextEditingController> controllers = List<TextEditingController>();
+  int totalTransaction = 0;
 
   HomeState(this.context){
     getProducts();
@@ -27,6 +29,7 @@ class HomeState extends ChangeNotifier {
         if (status == 200) {
           products = List<Products>();
           products = List<Products>.from(res.map((i) => Products.fromJson(i)));
+          initializeController();
         } else {
           VPopUp(context).error(message);
         }
@@ -34,5 +37,22 @@ class HomeState extends ChangeNotifier {
         return;
       },
     );
+  }
+
+  initializeController(){
+    controllers = List<TextEditingController>();
+    for(var data in products){
+      TextEditingController controller = TextEditingController();
+      controller.text = "0";
+      controllers.add(controller);
+    }
+  }
+
+  countTotalTransaction(){
+    totalTransaction = 0;
+    for(int i=0; i<products.length; i++){
+      totalTransaction += (products[i].harga * int.parse(controllers[i].text.toString()));
+    }
+    notifyListeners();
   }
 }
