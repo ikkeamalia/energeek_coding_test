@@ -2,6 +2,7 @@ class Products {
 	int id;
 	String nama;
 	int harga;
+	int qty = 0;
 
 	Products({this.id, this.nama, this.harga});
 

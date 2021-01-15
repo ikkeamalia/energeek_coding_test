@@ -95,19 +95,26 @@ class _HomeScreenState extends State<HomeScreen> {
             top: Radius.circular(VStyle.itemCorner),
           ),
         ),
-        child: Container(
-          decoration: BoxDecoration(
-            color: VColor.grey500,
-            borderRadius: BorderRadius.circular(10.0),
+        child: InkWell(
+          onTap: () {
+            if(state.totalTransaction > 0){
+              VNavigation.toPreview(context, state.products);
+            }
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: VColor.grey500,
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  children: [
+                    Expanded(child: vText("Total")),
+                    vText(state.totalTransaction.toString(), money: true)
+                  ],
+                )),
           ),
-          child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                children: [
-                  Expanded(child: vText("Total")),
-                  vText(state.totalTransaction.toString(), money: true)
-                ],
-              )),
         ),
       ),
     );
@@ -138,7 +145,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: VInputText(state.controllers[index].text,
                       controller: state.controllers[index],
-                      fontSize: 13.0, keyboardType: TextInputType.number, onChange: (v){
+                      fontSize: 13.0, keyboardType: TextInputType.number, onChange: (String v){
+                        state.products[index].qty = int.parse(v);
                         state.countTotalTransaction();
                       }),
                 ))

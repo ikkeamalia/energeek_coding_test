@@ -40,6 +40,7 @@ dependencies:
   flutter_money_formatter: ^0.8.3
   provider: ^4.3.2+2
   intl:
+  http:
 
 dev_dependencies:
   flutter_test:
