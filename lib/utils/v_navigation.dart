@@ -1,4 +1,5 @@
 import 'package:energeek_test/models/product/products.dart';
+import 'package:energeek_test/views/login_screen.dart';
 import 'package:energeek_test/views/detail_history_screen.dart';
 import 'package:energeek_test/views/history_screen.dart';
 import 'package:energeek_test/views/home_screen.dart';
@@ -9,9 +10,8 @@ import 'package:flutter/material.dart';
 class VNavigation {
 
   static toHome(context) async {
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-            (Route<dynamic> route) => false);
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (BuildContext context) => HomeScreen()));
   }
 
   static toHistory(context) async {
@@ -27,5 +27,10 @@ class VNavigation {
   static toPreview(context, List<Products> products) async {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => PreviewScreen(products)));
+  }
+
+  static toLogin(context) async {
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
   }
 }

@@ -5,35 +5,34 @@ import 'package:energeek_test/utils/v_color.dart';
 import 'package:energeek_test/utils/v_navigation.dart';
 import 'package:energeek_test/widgets/v_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 
-class BoardingScreen extends StatefulWidget {
+class SplashScreen extends StatefulWidget {
   @override
-  _BoardingScreenState createState() => _BoardingScreenState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _BoardingScreenState extends State<BoardingScreen> {
+class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
+    goToBoarding();
     super.initState();
-    goToHome();
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: VColor.azure,
+        color: Colors.blue,
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: Center(child: vText("Kasir App", color: Colors.white, fontSize: 25)),
+        child: Center(child: vText("Kasir App", color: Colors.white, fontSize: 30)),
       ),
     );
   }
 
-  goToHome(){
-    Timer(Duration(milliseconds: 2000), () async {
-      VNavigation.toHome(context);
+  goToBoarding(){
+    Timer(Duration(milliseconds: 3000), () async {
+      VNavigation.toLogin(context);
     });
   }
 }
