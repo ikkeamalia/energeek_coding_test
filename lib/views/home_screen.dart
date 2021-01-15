@@ -62,20 +62,16 @@ class _HomeScreenState extends State<HomeScreen> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Container(
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: ListView.builder(
-                  itemCount: state.products.length,
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return itemProduct(state.products[index], index);
-                  }),
-            ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 100.0),
+            child: ListView.builder(
+                itemCount: state.products.length,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return itemProduct(state.products[index], index);
+                }),
           ),
-          SizedBox(height: 20)
         ],
       ),
     );
@@ -122,8 +118,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   itemProduct(Products product, int index) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:energeek_test/widgets/popup/save_transaction_success_popup.dart';
 import 'package:http/http.dart' as http;
 import 'package:energeek_test/models/history/histories.dart';
 import 'package:energeek_test/models/product/products.dart';
@@ -41,7 +42,16 @@ class PreviewState extends ChangeNotifier {
       var res = jsonDecode(response.body);
       Navigator.pop(context);
       if (response.statusCode == 200) {
-        VNavigation.toHome(context);
+        showDialog(
+          context: context,
+          child: AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            contentPadding: EdgeInsets.all(0.0),
+            content: SaveTransactionSuccessPopUp(),
+          ),
+        ).then((value) {
+        });
       } else {
         VPopUp(context).error("Terjadi Kesalahan");
       }
