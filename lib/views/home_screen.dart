@@ -1,6 +1,7 @@
 import 'package:energeek_test/models/product/products.dart';
 import 'package:energeek_test/provider/home_state.dart';
 import 'package:energeek_test/utils/v_color.dart';
+import 'package:energeek_test/utils/v_navigation.dart';
 import 'package:energeek_test/widgets/v_text.dart';
 import 'package:energeek_test/widgets/v_widget.dart';
 import 'package:flutter/material.dart';
@@ -30,13 +31,17 @@ class _HomeScreenState extends State<HomeScreen> {
   body() {
     return Scaffold(
       appBar: AppBar(
+        leading: null,
+        automaticallyImplyLeading: false,
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Expanded(
                 child: vText("Aplikasi Kasir",
                     color: Colors.white, fontSize: 16.0)),
-            Icon(Icons.history, color: Colors.white)
+            InkWell(
+                onTap: () => VNavigation.toHistory(context),
+                child: Icon(Icons.history, color: Colors.white))
           ],
         ),
       ),

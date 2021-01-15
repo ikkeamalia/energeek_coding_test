@@ -39,6 +39,7 @@ dependencies:
   visibility_detector: ^0.1.5
   flutter_money_formatter: ^0.8.3
   provider: ^4.3.2+2
+  intl:
 
 dev_dependencies:
   flutter_test:
