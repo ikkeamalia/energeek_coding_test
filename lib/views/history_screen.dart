@@ -3,6 +3,7 @@ import 'package:energeek_test/models/history/histories.dart';
 import 'package:energeek_test/provider/history_state.dart';
 import 'package:energeek_test/utils/date_utils.dart';
 import 'package:energeek_test/utils/v_color.dart';
+import 'package:energeek_test/utils/v_navigation.dart';
 import 'package:energeek_test/widgets/v_text.dart';
 import 'package:energeek_test/widgets/v_widget.dart';
 import 'package:flutter/material.dart';
@@ -63,24 +64,27 @@ class _HistoryScreenState extends State<HistoryScreen> {
   }
 
   itemHistory(Histories data){
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Expanded(
-                  child: vText(data.tanggal, fontSize: 13.0)),
-              vText(data.harga.toString(), fontSize: 13.0, money: true)
-            ],
+    return InkWell(
+      onTap: () => VNavigation.toHistoryDetail(context, data.id),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
+                    child: vText(data.tanggal, fontSize: 13.0)),
+                vText(data.harga.toString(), fontSize: 13.0, money: true)
+              ],
+            ),
           ),
-        ),
-        Divider(height: 1, color: VColor.greyText)
-      ],
+          Divider(height: 1, color: VColor.greyText)
+        ],
+      ),
     );
   }
 }
